@@ -1,8 +1,29 @@
-liczba_przypadkow = int(input())
+def pobranie_liczby_przypadkow():
+    while True:
+        try:
+            liczba_przypadkow = int(input())
+        except ValueError:
+            print("Liczba przypadkow musi być typu int")
+        else:
+            if liczba_przypadkow < 0:
+                print("Liczba przypadkow nie moze byc mniejsza od 0")
+            else:
+                return liczba_przypadkow
+
+def pobranie_liczby():
+    while True:
+        try:
+            liczba_temp = int(input())
+        except ValueError:
+            print("Podana Liczba musi być typu int")
+        else:
+            return liczba_temp
+
+
 jest_tribbionacci = {}
 bledne_dane = False
-for i in range(0, liczba_przypadkow):
-    liczba_uzytkownika = int(input())
+for i in range(0, pobranie_liczby_przypadkow()):
+    liczba_uzytkownika = pobranie_liczby()
     if liczba_uzytkownika <= 2:
         bledne_dane = True
     else:
