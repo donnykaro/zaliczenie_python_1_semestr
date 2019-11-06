@@ -1,3 +1,6 @@
+import sys
+
+
 def pobranie_liczby_przypadkow():
     while True:
         try:
@@ -6,9 +9,11 @@ def pobranie_liczby_przypadkow():
             print("Liczba przypadkow musi być typu int")
         else:
             if liczba_przypadkow < 0:
-                print("Liczba przypadkow nie moze byc mniejsza od 0")
+                print("Blad")
+                sys.exit(0)
             else:
                 return liczba_przypadkow
+
 
 def pobranie_liczby():
     while True:
@@ -37,22 +42,28 @@ for i in range(0, pobranie_liczby_przypadkow()):
 # t6=11
 # t7=20
 
-wynik = 0
-for przypadek in jest_tribbionacci:
-    wynik = 0
-    T_minus_3 = 0
-    T_minus_2 = 1
-    T_minus_1 = 2
-    for i in range(2, przypadek):
+T_minus_3 = 0
+T_minus_2 = 1
+T_minus_1 = 2
+for przypadek in sorted(jest_tribbionacci):
+    while True:
         wynik = T_minus_1 + T_minus_2 + T_minus_3
+
+        print("Przypadek: {}".format(przypadek))
+        print("Wynik: {}".format(wynik))
+
         if wynik == przypadek:
             jest_tribbionacci[przypadek] = True
             break
         else:
             jest_tribbionacci[przypadek] = False
+
         T_minus_3 = T_minus_2
         T_minus_2 = T_minus_1
         T_minus_1 = wynik
+
+        if wynik > przypadek:
+            break
 
 
 for przypadek in jest_tribbionacci:
@@ -60,6 +71,7 @@ for przypadek in jest_tribbionacci:
         print(str(przypadek) + "\tTAK")
     else:
         print(str(przypadek) + "\tNIE")
+
 
 if bledne_dane == True:
     print("Blad")
