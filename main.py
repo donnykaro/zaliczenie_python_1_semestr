@@ -1,5 +1,7 @@
 import sys
 
+jest_tribbonacci = {}
+bledne_dane = False
 
 def pobranie_liczby_przypadkow():
     while True:
@@ -25,53 +27,40 @@ def pobranie_liczby():
             return liczba_temp
 
 
-jest_tribbionacci = {}
-bledne_dane = False
 for i in range(0, pobranie_liczby_przypadkow()):
     liczba_uzytkownika = pobranie_liczby()
     if liczba_uzytkownika <= 2:
         bledne_dane = True
     else:
-        jest_tribbionacci[liczba_uzytkownika] = False
-
-# t1=0
-# t2=1
-# t3=2
-# t4=3
-# t5=6
-# t6=11
-# t7=20
+        jest_tribbonacci[liczba_uzytkownika] = False
 
 T_minus_3 = 0
 T_minus_2 = 1
 T_minus_1 = 2
-for przypadek in sorted(jest_tribbionacci):
+for przypadek in sorted(jest_tribbonacci):
     while True:
         wynik = T_minus_1 + T_minus_2 + T_minus_3
 
-        print("Przypadek: {}".format(przypadek))
-        print("Wynik: {}".format(wynik))
-
         if wynik == przypadek:
-            jest_tribbionacci[przypadek] = True
+            jest_tribbonacci[przypadek] = True
             break
         else:
-            jest_tribbionacci[przypadek] = False
+            jest_tribbonacci[przypadek] = False
+
+        if wynik > przypadek:
+            break
 
         T_minus_3 = T_minus_2
         T_minus_2 = T_minus_1
         T_minus_1 = wynik
 
-        if wynik > przypadek:
-            break
 
-
-for przypadek in jest_tribbionacci:
-    if jest_tribbionacci[przypadek] == True:
+for przypadek in jest_tribbonacci:
+    if jest_tribbonacci[przypadek]:
         print(str(przypadek) + "\tTAK")
     else:
         print(str(przypadek) + "\tNIE")
 
 
-if bledne_dane == True:
+if bledne_dane:
     print("Blad")
