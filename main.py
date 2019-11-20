@@ -23,19 +23,18 @@ def pobranie_liczby():
     try:
         liczba_temp = int(input_uzytkownika)
     except ValueError:
-        jest_tribbonacci.append([input_uzytkownika, None])
+        jest_tribbonacci.append([input_uzytkownika, 'BLAD'])
     else:
         if type(liczba_temp) == int:
             if liczba_temp <= 2:
-                jest_tribbonacci.append([input_uzytkownika, None])
+                jest_tribbonacci.append([input_uzytkownika, 'BLAD'])
             else:
                 return liczba_temp
 
 
-T_minus_3 = 0
-T_minus_2 = 1
-T_minus_1 = 2
 for i in range(0, pobranie_liczby_przypadkow()):
+
+    T_minus_3, T_minus_2, T_minus_1 = 0, 1, 2
 
     przypadek = pobranie_liczby()
     if type(przypadek) == int:
@@ -43,22 +42,17 @@ for i in range(0, pobranie_liczby_przypadkow()):
             wynik = T_minus_1 + T_minus_2 + T_minus_3
 
             if wynik == przypadek:
-                jest_tribbonacci.append([przypadek, True])
+                jest_tribbonacci.append([przypadek, 'TAK'])
                 break
 
             if wynik > przypadek:
-                jest_tribbonacci.append([przypadek, False])
+                jest_tribbonacci.append([przypadek, 'NIE'])
                 break
 
-            T_minus_3 = T_minus_2
-            T_minus_2 = T_minus_1
-            T_minus_1 = wynik
+            T_minus_3, T_minus_2, T_minus_1 = T_minus_2, T_minus_1, wynik
 
 for i in range(0, len(jest_tribbonacci)):
-    if jest_tribbonacci[i][1] is not None:
-        if jest_tribbonacci[i][1]:
-            print(str(jest_tribbonacci[i][0]) + "\tTAK")
-        else:
-            print(str(jest_tribbonacci[i][0]) + "\tNIE")
+    if jest_tribbonacci[i][1] == 'BLAD':
+        print(jest_tribbonacci[i][1])
     else:
-        print('BLAD')
+        print(f"{jest_tribbonacci[i][0]}\t{jest_tribbonacci[i][1]}")
